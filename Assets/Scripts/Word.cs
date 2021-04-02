@@ -7,7 +7,8 @@ public class Word
 {
     public string word;
     private int typeIndex;
-
+    private bool isDestroyed = false;
+    public Sprite newSprite;
     WordDisplay display;
     public Word(string _word, WordDisplay _display) 
     {
@@ -29,18 +30,28 @@ public class Word
         display.RemoveLetter();
     }
 
-    public bool WordTyped()
-    {
-        bool wordTyped = (typeIndex >= word.Length);
-        if(wordTyped)
-        {
-            // Remove the word on screen
-        }
-        return wordTyped;
-    }
-
     public string getWord()
     {
         return word;
     }
+
+    public void destroyShip()
+    {
+        if(display.GetSpriteRenderer() != null)
+        {
+            display.GetSpriteRenderer().sprite = display.getSprite();
+            display.RemoveWord();
+            isDestroyed = true;
+        }
+    }
+    public bool getDestroyed()
+    {
+        return isDestroyed;
+    }
+
+    public bool isWordNull()
+    {
+        return display.isNull();
+    }
 }
+

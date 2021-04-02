@@ -7,21 +7,24 @@ public class WordInput : MonoBehaviour
     public WordManager wordManager;
     public InputField textInput;
     // Update is called once per frame
+    void Start()
+    {
+        textInput.ActivateInputField();
+    }
+
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.Return))
         {
-            /*
-            foreach(char letter in textInput.text)
-            {
-                wordManager.TypeLetter(letter);
-            }
-            */
             wordManager.TypeWord(textInput.text);
-            textInput.ActivateInputField();
             textInput.Select();
+            textInput.ActivateInputField();
             textInput.text = "";
         }
+        textInput.ActivateInputField();
+
 
     }
+
+
 }
